@@ -15,7 +15,7 @@ class ClientTest extends UnitTestCase
         $client = new Client($client);
         $data = $client->findByAddress('DE', 'Bonn', '53113');
 
-        $this->assertSame('Packstation 207', $data['locations'][0]['name']);
-        $this->assertSame('DE', $data['locations'][0]['place']['address']['countryCode']);
+        $this->assertSame('Packstation 207', $data->locations[0]['name']);
+        $this->assertSame('DE', $data->locations[0]['place']['address']['countryCode']);
     }
 }
