@@ -101,7 +101,7 @@ class LocationsDTOTest extends UnitTestCase
         ];
         $dto = new LocationsDTO(...$data);
 
-        $this->assertSame('Postfiliale 502', $dto->locations[0]['name']);
-        $this->assertSame('DE', $dto->locations[0]['place']['address']['countryCode']);
+        $this->assertSame('Postfiliale 502', $dto->locations[0]->name);
+        $this->assertSame('DE', $dto->locations[0]->place['address']['countryCode']);
     }
 }
