@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\dhl_location_finder\API\DTO;
 
-use Drupal\dhl_location_finder\API\LocationsDTO;
+use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
 use Drupal\Tests\UnitTestCase;
 
 class LocationsDTOTest extends UnitTestCase
