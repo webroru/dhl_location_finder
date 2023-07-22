@@ -6,10 +6,7 @@ namespace Drupal\dhl_location_finder\API\Entity;
 
 class Place
 {
-    public function __construct(
-        private Address $address,
-    ) {
-    }
+    private Address $address;
 
     public function getAddress(): Address
     {
