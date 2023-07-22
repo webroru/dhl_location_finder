@@ -9,7 +9,7 @@ use Drupal\Tests\UnitTestCase;
 
 class OpeningHoursTest extends UnitTestCase
 {
-    public function testCreateLocationDTO(): void
+    public function testCreateOpeningHoursEntity(): void
     {
         $openingHours = (new OpeningHours())
             ->setOpens('08:00:00')
