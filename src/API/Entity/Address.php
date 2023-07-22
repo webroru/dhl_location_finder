@@ -6,13 +6,10 @@ namespace Drupal\dhl_location_finder\API\Entity;
 
 class Address
 {
-    public function __construct(
-        private string $countryCode,
-        private string $postalCode,
-        private string $addressLocality,
-        private string $streetAddress,
-    ) {
-    }
+    private string $countryCode;
+    private string $postalCode;
+    private string $addressLocality;
+    private string $streetAddress;
 
     public function getCountryCode(): string
     {
