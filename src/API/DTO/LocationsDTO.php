@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Drupal\dhl_location_finder\API\DTO;
 
+use Drupal\dhl_location_finder\API\Entity\Location;
+
 final readonly class LocationsDTO
 {
-    public array $locations;
-    public function __construct(array $locations)
+    /**
+     * @param Location[] $locations
+     */
+    public function __construct(public array $locations)
     {
-        $collection = [];
-        foreach ($locations as $location) {
-            $collection[] = new LocationDTO(...$location);
-        }
-
-        $this->locations = $collection;
     }
 }
