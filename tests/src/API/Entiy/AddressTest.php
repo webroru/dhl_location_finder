@@ -11,13 +11,12 @@ class AddressTest extends UnitTestCase
 {
     public function testCreateLocationDTO(): void
     {
-        $data = [
-            'countryCode' => 'DE',
-            'postalCode' => '53113',
-            'addressLocality' => 'Bonn',
-            'streetAddress' => 'Charles-de-Gaulle-Str. 20',
-          ];
-        $address = new Address(...$data);
+        $address = (new Address())
+            ->setCountryCode('DE')
+            ->setPostalCode('53113')
+            ->setAddressLocality('Bonn')
+            ->setStreetAddress('Charles-de-Gaulle-Str. 20')
+        ;
 
         $this->assertEquals('DE', $address->getCountryCode());
         $this->assertEquals('53113', $address->getPostalCode());
