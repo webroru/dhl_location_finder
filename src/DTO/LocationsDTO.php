@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\dhl_location_finder\API\DTO;
+namespace Drupal\dhl_location_finder\DTO;
 
 use Drupal\dhl_location_finder\API\Entity\Location;
 

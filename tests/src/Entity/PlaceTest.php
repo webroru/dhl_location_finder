@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\API;
+namespace Drupal\Tests\dhl_location_finder\Entity;
 
-use Drupal\dhl_location_finder\API\Entity\Address;
-use Drupal\dhl_location_finder\API\Entity\Place;
+use Drupal\dhl_location_finder\Entity\Address;
+use Drupal\dhl_location_finder\Entity\Place;
 use Drupal\Tests\UnitTestCase;
 
 class PlaceTest extends UnitTestCase
