@@ -6,12 +6,10 @@ namespace Drupal\dhl_location_finder\API\Entity;
 
 class Location
 {
-    public function __construct(
-        private string $name,
-        private Place $place,
-        private array $openingHours,
-    ) {
-    }
+    private string $name;
+    private Place $place;
+    /** @var OpeningHours[] */
+    private array $openingHours;
 
     public function getName(): string
     {
@@ -35,18 +33,11 @@ class Location
         return $this;
     }
 
-    /**
-     * @return OpeningHours[]
-     */
     public function getOpeningHours(): array
     {
         return $this->openingHours;
     }
 
-    /**
-     * @param OpeningHours[] $openingHours
-     * @return $this
-     */
     public function setOpeningHours(array $openingHours): self
     {
         $this->openingHours = $openingHours;
