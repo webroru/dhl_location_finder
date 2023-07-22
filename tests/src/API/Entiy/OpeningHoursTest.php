@@ -11,12 +11,11 @@ class OpeningHoursTest extends UnitTestCase
 {
     public function testCreateLocationDTO(): void
     {
-        $data = [
-            'opens' => '08:00:00',
-            'closes' => '17:00:00',
-            'dayOfWeek' => 'http://schema.org/Monday'
-          ];
-        $openingHours = new OpeningHours(...$data);
+        $openingHours = (new OpeningHours())
+            ->setOpens('08:00:00')
+            ->setCloses('17:00:00')
+            ->setDayOfWeek('http://schema.org/Monday')
+        ;
 
         $this->assertEquals('08:00:00', $openingHours->getOpens());
         $this->assertEquals('17:00:00', $openingHours->getCloses());
