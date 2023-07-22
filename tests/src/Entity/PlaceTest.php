@@ -10,7 +10,7 @@ use Drupal\Tests\UnitTestCase;
 
 class PlaceTest extends UnitTestCase
 {
-    public function testCreateLocationDTO(): void
+    public function testCreatePlaceEntity(): void
     {
         $address = (new Address())
             ->setCountryCode('DE')
