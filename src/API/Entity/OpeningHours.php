@@ -6,12 +6,9 @@ namespace Drupal\dhl_location_finder\API\Entity;
 
 class OpeningHours
 {
-    public function __construct(
-        private string $opens,
-        private string $closes,
-        private string $dayOfWeek,
-    ) {
-    }
+    private string $opens;
+    private string $closes;
+    private string $dayOfWeek;
 
     public function getOpens(): string
     {
