@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\Unit;
+namespace Drupal\Tests\dhl_location_finder\API;
 
 use Drupal\dhl_location_finder\API\LocationDTO;
 use Drupal\Tests\UnitTestCase;
