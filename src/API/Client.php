@@ -15,7 +15,7 @@ class Client
     {
     }
 
-    public function findByAddress(string $countryCode, string $addressLocality, string $postalCode): LocationsDTO
+    public function findByAddress(string $countryCode, string $addressLocality, string $postalCode): array
     {
         $options = [
             'query' => [
@@ -29,8 +29,7 @@ class Client
         ];
 
         $response = $this->client->get(self::HOST . '/' . self::API . '/find-by-address', $options);
-        $data = json_decode($response->getBody()->getContents(), true);
 
-        return new LocationsDTO(...$data);
+        return json_decode($response->getBody()->getContents(), true);
     }
 }
