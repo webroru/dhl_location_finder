@@ -13,7 +13,8 @@ class ClientTest extends UnitTestCase
     {
         $client = new \GuzzleHttp\Client();
         $client = new Client($client);
-        $data = $client->findByAddress('DE', 'Bonn', '53113');
+        $json = $client->findByAddress('DE', 'Bonn', '53113');
+        $data = json_decode($json, true);
 
         $this->assertSame('Packstation 207', $data['locations'][0]['name']);
         $this->assertSame('DE', $data['locations'][0]['place']['address']['countryCode']);
