@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\dhl_location_finder\DTO;
 
-use Drupal\dhl_location_finder\API\Entity\Location;
+use Drupal\dhl_location_finder\Entity\Location;
 
 final readonly class LocationsDTO
 {
