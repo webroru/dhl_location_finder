@@ -3,5 +3,9 @@
   "description": "description",
   "minimum-stability": "stable",
   "license": "proprietary",
-  "type": "drupal-custom-module"
+  "type": "drupal-custom-module",
+
+  "require": {
+    "symfony/property-access": "^6.3"
+  }
 }
