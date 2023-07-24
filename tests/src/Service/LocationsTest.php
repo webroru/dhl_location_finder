@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\dhl_location_finder\Service;
 
 use Drupal\dhl_location_finder\API\Client;
-use Drupal\dhl_location_finder\DTO\LocationsDTO;
+use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
 use Drupal\dhl_location_finder\Service\Locations;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\PropertyInfo\Extractor\ConstructorExtractor;

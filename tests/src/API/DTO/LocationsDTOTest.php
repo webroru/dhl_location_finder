@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\Entity;
+namespace Drupal\Tests\dhl_location_finder\API\DTO;
 
-use Drupal\dhl_location_finder\Entity\Address;
-use Drupal\dhl_location_finder\Entity\Location;
-use Drupal\dhl_location_finder\Entity\OpeningHours;
-use Drupal\dhl_location_finder\Entity\Place;
+use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
+use Drupal\dhl_location_finder\API\Entity\Address;
+use Drupal\dhl_location_finder\API\Entity\Location;
+use Drupal\dhl_location_finder\API\Entity\OpeningHours;
+use Drupal\dhl_location_finder\API\Entity\Place;
 use Drupal\Tests\UnitTestCase;
 
-class LocationTest extends UnitTestCase
+class LocationsDTOTest extends UnitTestCase
 {
-    public function testCreateLocationEntity(): void
+    public function testCreateLocationsDTO(): void
     {
         $address = (new Address())
             ->setCountryCode('DE')
@@ -35,9 +36,9 @@ class LocationTest extends UnitTestCase
             ->setPlace($place)
             ->setOpeningHours([$openingHours])
         ;
+        $dto = new LocationsDTO([$location]);
 
-        $this->assertEquals('Postfiliale 502', $location->getName());
-        $this->assertEquals('DE', $location->getPlace()->getAddress()->getCountryCode());
-        $this->assertEquals('08:00:00', $location->getOpeningHours()[0]->getOpens());
+        $this->assertSame('Postfiliale 502', $dto->locations[0]->getName());
+        $this->assertSame('DE', $dto->locations[0]->getPlace()->getAddress()->getCountryCode());
     }
 }

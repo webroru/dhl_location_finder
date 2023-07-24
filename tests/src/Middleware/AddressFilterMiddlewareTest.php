@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\dhl_location_finder\Middleware;
 
-use Drupal\dhl_location_finder\Entity\Address;
-use Drupal\dhl_location_finder\Entity\Location;
-use Drupal\dhl_location_finder\Entity\Place;
+use Drupal\dhl_location_finder\API\Entity\Address;
+use Drupal\dhl_location_finder\API\Entity\Location;
+use Drupal\dhl_location_finder\API\Entity\Place;
 use Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware;
 use Drupal\Tests\UnitTestCase;
 

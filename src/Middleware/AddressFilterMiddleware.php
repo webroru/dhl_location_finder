@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\dhl_location_finder\Middleware;
 
-use Drupal\dhl_location_finder\Entity\Location;
+use Drupal\dhl_location_finder\API\Entity\Location;
 
 class AddressFilterMiddleware
 {
