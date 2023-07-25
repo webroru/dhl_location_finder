@@ -6,7 +6,9 @@ namespace Drupal\Tests\dhl_location_finder\Middleware;
 
 use Drupal\dhl_location_finder\API\Entity\Address;
 use Drupal\dhl_location_finder\API\Entity\Location;
+use Drupal\dhl_location_finder\API\Entity\OpeningHours;
 use Drupal\dhl_location_finder\API\Entity\Place;
+use Drupal\dhl_location_finder\API\LocationAdapter;
 use Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware;
 use Drupal\Tests\UnitTestCase;
 
@@ -15,19 +17,31 @@ class AddressFilterMiddlewareTest extends UnitTestCase
     public function testNullResult(): void
     {
         $address = (new Address())
-            ->setStreetAddress('Maximilianstr. 7');
-
-        $place = (new Place())
-            ->setAddress($address);
-
-        $location = (new Location())
-            ->setName('Should be filtered')
-            ->setPlace($place)
+            ->setCountryCode('DE')
+            ->setPostalCode('53113')
+            ->setAddressLocality('Bonn')
+            ->setStreetAddress('Maximilianstr. 7')
         ;
 
-        $middleware = new AddressFilterMiddleware();
+        $place = (new Place())
+            ->setAddress($address)
+        ;
 
-        $result = $middleware->handle($location);
+        $openingHours = (new OpeningHours())
+            ->setOpens('08:00:00')
+            ->setCloses('17:00:00')
+            ->setDayOfWeek('http://schema.org/Monday')
+        ;
+
+        $location = (new Location())
+            ->setName('Postfiliale 502')
+            ->setPlace($place)
+            ->setOpeningHours([$openingHours])
+        ;
+
+        $adapter = new LocationAdapter($location);
+        $middleware = new AddressFilterMiddleware();
+        $result = $middleware->handle($adapter);
 
         $this->assertNull($result);
     }
@@ -35,20 +49,32 @@ class AddressFilterMiddlewareTest extends UnitTestCase
     public function testPassResult(): void
     {
         $address = (new Address())
-            ->setStreetAddress('Charles-de-Gaulle-Str. 20');
+            ->setCountryCode('DE')
+            ->setPostalCode('53113')
+            ->setAddressLocality('Bonn')
+            ->setStreetAddress('Charles-de-Gaulle-Str. 20')
+        ;
 
         $place = (new Place())
-            ->setAddress($address);
+            ->setAddress($address)
+        ;
+
+        $openingHours = (new OpeningHours())
+            ->setOpens('08:00:00')
+            ->setCloses('17:00:00')
+            ->setDayOfWeek('http://schema.org/Monday')
+        ;
 
         $location = (new Location())
             ->setName('Should stay')
             ->setPlace($place)
+            ->setOpeningHours([$openingHours])
         ;
 
+        $adapter = new LocationAdapter($location);
         $middleware = new AddressFilterMiddleware();
+        $result = $middleware->handle($adapter);
 
-        $result = $middleware->handle($location);
-
-        $this->assertNull($result);
+        $this->assertEquals('Should stay', $result->getName());
     }
 }
