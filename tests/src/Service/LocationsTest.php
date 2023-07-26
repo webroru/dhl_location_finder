@@ -20,8 +20,11 @@ use Symfony\Component\Serializer\Serializer;
 
 class LocationsTest extends UnitTestCase
 {
-    public function testGetLocations(): void
+    private Locations $service;
+    protected function setUp(): void
     {
+        parent::setUp();
+
         $guzzleClient = new \GuzzleHttp\Client();
         $apiClient = new Client($guzzleClient);
         $phpDocExtractor = new PhpDocExtractor();
@@ -39,9 +42,12 @@ class LocationsTest extends UnitTestCase
 
         $locationProvider = new LocationProvider($apiClient, $serializer);
 
-        $service = new Locations($locationProvider);
+        $this->service = new Locations($locationProvider);
+    }
 
-        $locationsDto = $service->findByAddress('DE', 'Bonn', '53113');
+    public function testGetLocations(): void
+    {
+        $locationsDto = $this->service->findByAddress('DE', 'Bonn', '53113');
 
         $this->assertInstanceOf(LocationsDTO::class, $locationsDto);
     }
