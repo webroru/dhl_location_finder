@@ -6,6 +6,7 @@ namespace Drupal\Tests\dhl_location_finder\Service;
 
 use Drupal\dhl_location_finder\API\Client;
 use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
+use Drupal\dhl_location_finder\API\LocationProvider;
 use Drupal\dhl_location_finder\Service\Locations;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\PropertyInfo\Extractor\ConstructorExtractor;
@@ -36,7 +37,9 @@ class LocationsTest extends UnitTestCase
             encoders: [new JsonEncoder()]
         );
 
-        $service = new Locations($apiClient, $serializer);
+        $locationProvider = new LocationProvider($apiClient, $serializer);
+
+        $service = new Locations($locationProvider);
 
         $locationsDto = $service->findByAddress('DE', 'Bonn', '53113');
 
