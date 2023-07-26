@@ -51,4 +51,12 @@ class LocationsTest extends UnitTestCase
 
         $this->assertInstanceOf(LocationsDTO::class, $locationsDto);
     }
+
+    public function testProcessLocations(): void
+    {
+        $locationsDto = $this->service->findByAddress('DE', 'Bonn', '53113');
+        $locations = $this->service->processLocations($locationsDto->locations);
+
+        $this->assertInstanceOf(Locations::class, $locations);
+    }
 }
