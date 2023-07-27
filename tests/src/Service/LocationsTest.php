@@ -7,6 +7,9 @@ namespace Drupal\Tests\dhl_location_finder\Service;
 use Drupal\dhl_location_finder\API\Client;
 use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
 use Drupal\dhl_location_finder\API\LocationProvider;
+use Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware;
+use Drupal\dhl_location_finder\Middleware\LocationHandler;
+use Drupal\dhl_location_finder\Middleware\WeekendFilterMiddleware;
 use Drupal\dhl_location_finder\Service\Locations;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\PropertyInfo\Extractor\ConstructorExtractor;
@@ -41,8 +44,11 @@ class LocationsTest extends UnitTestCase
         );
 
         $locationProvider = new LocationProvider($apiClient, $serializer);
+        $addressFilterMiddleware = new AddressFilterMiddleware();
+        $weekendFilterMiddleware = new WeekendFilterMiddleware();
+        $locationHandler = new LocationHandler($addressFilterMiddleware, $weekendFilterMiddleware);
 
-        $this->service = new Locations($locationProvider);
+        $this->service = new Locations($locationProvider, $locationHandler);
     }
 
     public function testGetLocations(): void
@@ -57,6 +63,6 @@ class LocationsTest extends UnitTestCase
         $locationsDto = $this->service->findByAddress('DE', 'Bonn', '53113');
         $locations = $this->service->processLocations($locationsDto->locations);
 
-        $this->assertInstanceOf(Locations::class, $locations);
+        $this->assertInstanceOf(Locations::class, $locations[0]);
     }
 }
