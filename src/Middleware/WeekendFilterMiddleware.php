@@ -6,12 +6,12 @@ namespace Drupal\dhl_location_finder\Middleware;
 
 use Drupal\dhl_location_finder\Entity\Location;
 
-class WeekendFilterMiddleware
+class WeekendFilterMiddleware extends MiddlewareAbstract
 {
     public function handle(Location $location): ?Location
     {
         return $location->getOpeningHours()->getSaturday() && $location->getOpeningHours()->getSunday()
-            ? $location
+            ? parent::handle($location)
             : null;
     }
 }
