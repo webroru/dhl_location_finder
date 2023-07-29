@@ -18,6 +18,7 @@ use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -41,7 +42,7 @@ class LocationsTest extends UnitTestCase
                 new ObjectNormalizer(propertyTypeExtractor: $typeExtractor),
                 new ArrayDenormalizer(),
             ],
-            encoders: [new JsonEncoder()]
+            encoders: [new JsonEncoder(), new YamlEncoder()]
         );
 
         $locationProvider = new LocationProvider($apiClient, $serializer);
@@ -49,7 +50,7 @@ class LocationsTest extends UnitTestCase
         $weekendFilterMiddleware = new WeekendFilterMiddleware();
         $locationHandler = new LocationHandler($addressFilterMiddleware, $weekendFilterMiddleware);
 
-        $this->service = new Locations($locationProvider, $locationHandler);
+        $this->service = new Locations($locationProvider, $locationHandler, $serializer);
     }
 
     public function testGetLocations(): void
@@ -65,5 +66,14 @@ class LocationsTest extends UnitTestCase
         $locations = $this->service->processLocations($locationsDto->locations);
 
         $this->assertInstanceOf(Location::class, $locations[0]);
+    }
+
+    public function testConvertToYaml(): void
+    {
+        $locationsDto = $this->service->findByAddress('DE', 'Bonn', '53113');
+        $locations = $this->service->processLocations($locationsDto->locations);
+        $yaml = $this->service->convertToYaml($locations);
+
+        $this->assertIsString($yaml);
     }
 }
