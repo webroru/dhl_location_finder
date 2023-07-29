@@ -7,6 +7,7 @@ namespace Drupal\Tests\dhl_location_finder\Service;
 use Drupal\dhl_location_finder\API\Client;
 use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
 use Drupal\dhl_location_finder\API\LocationProvider;
+use Drupal\dhl_location_finder\Entity\Location;
 use Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware;
 use Drupal\dhl_location_finder\Middleware\LocationHandler;
 use Drupal\dhl_location_finder\Middleware\WeekendFilterMiddleware;
@@ -63,6 +64,6 @@ class LocationsTest extends UnitTestCase
         $locationsDto = $this->service->findByAddress('DE', 'Bonn', '53113');
         $locations = $this->service->processLocations($locationsDto->locations);
 
-        $this->assertInstanceOf(Locations::class, $locations[0]);
+        $this->assertInstanceOf(Location::class, $locations[0]);
     }
 }
