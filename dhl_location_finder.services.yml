@@ -1,0 +1,63 @@
+services:
+  api.client:
+    class: Drupal\dhl_location_finder\API\Client
+    arguments: ['@http_client']
+
+  phpdoc.extractor:
+    class: Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor
+
+  reflection.extractor:
+    class: Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor
+
+  constructor.extractor:
+    class: Symfony\Component\PropertyInfo\Extractor\ConstructorExtractor
+    arguments:
+      - ['@phpdoc.extractor']
+
+  property.info.extractor:
+    class: Symfony\Component\PropertyInfo\PropertyInfoExtractor
+    arguments:
+      $typeExtractors:
+        - '@constructor.extractor'
+        - '@phpdoc.extractor'
+        - '@reflection.extractor'
+
+  array.denormalizer:
+    class: Symfony\Component\Serializer\Normalizer\ArrayDenormalizer
+
+  object.normalizer:
+    class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
+    arguments:
+      $propertyTypeExtractor: '@property.info.extractor'
+
+  json.encoder:
+    class: Symfony\Component\Serializer\Encoder\JsonEncoder
+
+  serializer:
+    class: Symfony\Component\Serializer\Serializer
+    arguments:
+      - ['@object.normalizer', '@array.denormalizer']
+      - ['@json.encoder']
+
+  location.provider:
+    class: Drupal\dhl_location_finder\API\LocationProvider
+    arguments:
+      - '@api.client'
+      - '@serializer'
+
+  address.filter.middleware:
+    class: Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware
+
+  weekend.filter.middleware:
+    class: Drupal\dhl_location_finder\Middleware\WeekendFilterMiddleware
+
+  location.handler:
+    class: Drupal\dhl_location_finder\Middleware\LocationHandler
+    arguments:
+      - '@address.filter.middleware'
+      - '@weekend.filter.middleware'
+
+  Drupal\dhl_location_finder\Service\Locations:
+    arguments:
+      - '@location.provider'
+      - '@location.handler'
