@@ -1,4 +1,5 @@
 name: Module name
 type: module
 description: 'A description of what your module does.'
+core_version_requirement: ^9 || ^10
 core: 9.x
