@@ -10,7 +10,6 @@ use Drupal\dhl_location_finder\API\LocationAdapter;
 use Drupal\dhl_location_finder\API\LocationProvider;
 use Drupal\dhl_location_finder\Entity\Location;
 use Drupal\dhl_location_finder\Middleware\LocationHandler;
-use Drupal\jsonapi\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -51,6 +50,6 @@ final readonly class Locations
      */
     public function convertToYaml(array $locations): string
     {
-        return $this->serializer->encode($locations, YamlEncoder::FORMAT);
+        return $this->serializer->serialize($locations, YamlEncoder::FORMAT);
     }
 }

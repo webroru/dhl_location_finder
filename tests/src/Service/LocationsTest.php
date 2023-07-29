@@ -33,7 +33,7 @@ class LocationsTest extends UnitTestCase
         $guzzleClient = new \GuzzleHttp\Client();
         $apiClient = new Client($guzzleClient);
         $phpDocExtractor = new PhpDocExtractor();
-        $typeExtractor   = new PropertyInfoExtractor(
+        $typeExtractor  = new PropertyInfoExtractor(
             typeExtractors: [ new ConstructorExtractor([$phpDocExtractor]), $phpDocExtractor, new ReflectionExtractor()]
         );
 
