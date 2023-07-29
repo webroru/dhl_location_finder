@@ -33,11 +33,14 @@ services:
   json.encoder:
     class: Symfony\Component\Serializer\Encoder\JsonEncoder
 
+  yaml.encoder:
+    class: Symfony\Component\Serializer\Encoder\YamlEncoder
+
   serializer:
     class: Symfony\Component\Serializer\Serializer
     arguments:
       - ['@object.normalizer', '@array.denormalizer']
-      - ['@json.encoder']
+      - ['@json.encoder', '@yaml.encoder']
 
   location.provider:
     class: Drupal\dhl_location_finder\API\LocationProvider
