@@ -14,8 +14,8 @@ class LocationHandler extends MiddlewareAbstract
         AddressFilterMiddleware $addressFilterMiddleware,
         WeekendFilterMiddleware $weekendFilterMiddleware,
     ) {
-        $this->middleware = $addressFilterMiddleware
-            ->setNext($weekendFilterMiddleware);
+        $this->middleware = $addressFilterMiddleware;
+        $this->middleware->setNext($weekendFilterMiddleware);
     }
 
     public function handle(Location $location): ?Location

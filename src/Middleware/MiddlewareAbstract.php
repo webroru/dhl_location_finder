@@ -18,6 +18,9 @@ abstract class MiddlewareAbstract implements MiddlewareInterface
 
     public function handle(Location $location): ?Location
     {
-        return $this->middleware?->handle($location);
+        if (!$this->middleware) {
+            return $location;
+        }
+        return $this->middleware->handle($location);
     }
 }
