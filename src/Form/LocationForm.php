@@ -66,7 +66,7 @@ class LocationForm extends FormBase
             $form_state->getValue('addressLocality'),
             $form_state->getValue('postalCode')
         );
-        $handledLocations = $this->locationsService->processLocations($locations->locations);
+        $handledLocations = $this->locationsService->processLocations($locations);
         $yaml = $this->locationsService->convertToYaml($handledLocations);
         $this->messenger()->addMessage($yaml);
     }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Drupal\Tests\dhl_location_finder\API;
 
 use Drupal\dhl_location_finder\API\Client;
-use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
 use Drupal\dhl_location_finder\API\LocationProvider;
+use Drupal\dhl_location_finder\Entity\Location;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\PropertyInfo\Extractor\ConstructorExtractor;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
@@ -37,8 +37,8 @@ class LocationProviderTest extends UnitTestCase
 
         $locationProvider = new LocationProvider($client, $serializer);
 
-        $locationDto = $locationProvider->findByAddress('DE', 'Bonn', '53113');
+        $locations = $locationProvider->findByAddress('DE', 'Bonn', '53113');
 
-        $this->assertInstanceOf(LocationsDTO::class, $locationDto);
+        $this->assertInstanceOf(Location::class, $locations[0]);
     }
 }

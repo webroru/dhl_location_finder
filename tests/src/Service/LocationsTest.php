@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\Tests\dhl_location_finder\Service;
 
 use Drupal\dhl_location_finder\API\Client;
-use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
 use Drupal\dhl_location_finder\API\LocationProvider;
 use Drupal\dhl_location_finder\Entity\Location;
 use Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware;
@@ -55,23 +54,22 @@ class LocationsTest extends UnitTestCase
 
     public function testGetLocations(): void
     {
-        $locationsDto = $this->service->findByAddress('DE', 'Bonn', '53113');
-
-        $this->assertInstanceOf(LocationsDTO::class, $locationsDto);
-    }
-
-    public function testProcessLocations(): void
-    {
-        $locationsDto = $this->service->findByAddress('DE', 'Bonn', '53113');
-        $locations = $this->service->processLocations($locationsDto->locations);
+        $locations = $this->service->findByAddress('DE', 'Bonn', '53113');
 
         $this->assertInstanceOf(Location::class, $locations[0]);
     }
 
+    public function testProcessLocations(): void
+    {
+        $locations = $this->service->findByAddress('DE', 'Bonn', '53113');
+        $locationsProcessed = $this->service->processLocations($locations);
+
+        $this->assertInstanceOf(Location::class, $locationsProcessed[0]);
+    }
+
     public function testConvertToYaml(): void
     {
-        $locationsDto = $this->service->findByAddress('DE', 'Bonn', '53113');
-        $locations = $this->service->processLocations($locationsDto->locations);
+        $locations = $this->service->findByAddress('DE', 'Bonn', '53113');
         $yaml = $this->service->convertToYaml($locations);
 
         $this->assertIsString($yaml);
