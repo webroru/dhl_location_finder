@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\dhl_location_finder\Middleware;
+namespace Drupal\location_finder\Middleware;
 
-use Drupal\dhl_location_finder\Entity\Location;
+use Drupal\location_finder\Entity\Location;
 
 interface MiddlewareInterface
 {

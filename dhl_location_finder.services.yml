@@ -2,16 +2,16 @@ services:
   _defaults:
     autowire: true
 
-  Drupal\dhl_location_finder\API\Client: ~
-  Drupal\dhl_location_finder\API\LocationProvider: ~
-  Drupal\dhl_location_finder\API\LocationProviderInterface: '@Drupal\dhl_location_finder\API\LocationProvider'
-  Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware: ~
-  Drupal\dhl_location_finder\Middleware\WeekendFilterMiddleware: ~
-  Drupal\dhl_location_finder\Middleware\LocationHandler: ~
-  Drupal\dhl_location_finder\Service\Locations:
+  Drupal\location_finder\API\Client: ~
+  Drupal\location_finder\API\LocationProvider: ~
+  Drupal\location_finder\API\LocationProviderInterface: '@Drupal\location_finder\API\LocationProvider'
+  Drupal\location_finder\Middleware\AddressFilterMiddleware: ~
+  Drupal\location_finder\Middleware\WeekendFilterMiddleware: ~
+  Drupal\location_finder\Middleware\LocationHandler: ~
+  Drupal\location_finder\Service\Locations:
     arguments:
-      - '@Drupal\dhl_location_finder\API\LocationProviderInterface'
-      - '@Drupal\dhl_location_finder\Middleware\LocationHandler'
+      - '@Drupal\location_finder\API\LocationProviderInterface'
+      - '@Drupal\location_finder\Middleware\LocationHandler'
       - '@Symfony\Component\Serializer\Serializer'
   Symfony\Component\PropertyInfo\Extractor\ConstructorExtractor:
     arguments:

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\dhl_location_finder\API\Dhl;
+namespace Drupal\location_finder\API\Dhl;
 
-use Drupal\dhl_location_finder\Entity\Address;
-use Drupal\dhl_location_finder\Entity\Location;
-use Drupal\dhl_location_finder\Entity\OpeningHours;
+use Drupal\location_finder\Entity\Address;
+use Drupal\location_finder\Entity\Location;
+use Drupal\location_finder\Entity\OpeningHours;
 
 class LocationAdapter extends Location
 {

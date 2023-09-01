@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\API\Dhl;
+namespace Drupal\Tests\location_finder\API\Dhl;
 
-use Drupal\dhl_location_finder\API\Dhl\Client;
+use Drupal\location_finder\API\Dhl\Client;
 use Drupal\Tests\UnitTestCase;
 
 class ClientTest extends UnitTestCase

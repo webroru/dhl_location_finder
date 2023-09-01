@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\Service;
+namespace Drupal\Tests\location_finder\Service;
 
-use Drupal\dhl_location_finder\API\Dhl\Client;
-use Drupal\dhl_location_finder\API\Dhl\LocationProvider;
-use Drupal\dhl_location_finder\Entity\Location;
-use Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware;
-use Drupal\dhl_location_finder\Middleware\LocationHandler;
-use Drupal\dhl_location_finder\Middleware\WeekendFilterMiddleware;
-use Drupal\dhl_location_finder\Service\Locations;
+use Drupal\location_finder\API\Dhl\Client;
+use Drupal\location_finder\API\Dhl\LocationProvider;
+use Drupal\location_finder\Entity\Location;
+use Drupal\location_finder\Middleware\AddressFilterMiddleware;
+use Drupal\location_finder\Middleware\LocationHandler;
+use Drupal\location_finder\Middleware\WeekendFilterMiddleware;
+use Drupal\location_finder\Service\Locations;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\PropertyInfo\Extractor\ConstructorExtractor;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;

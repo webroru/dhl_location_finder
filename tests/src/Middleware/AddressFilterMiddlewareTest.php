@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\Middleware;
+namespace Drupal\Tests\location_finder\Middleware;
 
-use Drupal\dhl_location_finder\API\Dhl\Entity\Address;
-use Drupal\dhl_location_finder\API\Dhl\Entity\Location;
-use Drupal\dhl_location_finder\API\Dhl\Entity\OpeningHours;
-use Drupal\dhl_location_finder\API\Dhl\Entity\Place;
-use Drupal\dhl_location_finder\API\Dhl\LocationAdapter;
-use Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware;
+use Drupal\location_finder\API\Dhl\Entity\Address;
+use Drupal\location_finder\API\Dhl\Entity\Location;
+use Drupal\location_finder\API\Dhl\Entity\OpeningHours;
+use Drupal\location_finder\API\Dhl\Entity\Place;
+use Drupal\location_finder\API\Dhl\LocationAdapter;
+use Drupal\location_finder\Middleware\AddressFilterMiddleware;
 use Drupal\Tests\UnitTestCase;
 
 class AddressFilterMiddlewareTest extends UnitTestCase

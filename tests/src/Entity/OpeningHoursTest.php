@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\Entity;
+namespace Drupal\Tests\location_finder\Entity;
 
-use Drupal\dhl_location_finder\Entity\OpeningHours;
+use Drupal\location_finder\Entity\OpeningHours;
 use Drupal\Tests\UnitTestCase;
 
 class OpeningHoursTest extends UnitTestCase
