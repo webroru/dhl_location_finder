@@ -6,6 +6,7 @@
   "type": "drupal-custom-module",
 
   "require": {
-    "symfony/property-access": "^6.3"
+    "symfony/property-access": "^6.3",
+    "phpdocumentor/reflection-docblock": "^5.3"
   }
 }
