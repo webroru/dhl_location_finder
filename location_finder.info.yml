@@ -1,5 +1,5 @@
-name: Module name
+name: Location Finder
 type: module
-description: 'A description of what your module does.'
+description: 'Finding all pick-up and drop-off points to send and receive packages.'
 core_version_requirement: ^9 || ^10
 core: 9.x
