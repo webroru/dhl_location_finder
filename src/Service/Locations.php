@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\dhl_location_finder\Service;
+namespace Drupal\location_finder\Service;
 
-use Drupal\dhl_location_finder\API\LocationProviderInterface;
-use Drupal\dhl_location_finder\Entity\Location;
-use Drupal\dhl_location_finder\Middleware\LocationHandler;
+use Drupal\location_finder\API\LocationProviderInterface;
+use Drupal\location_finder\Entity\Location;
+use Drupal\location_finder\Middleware\LocationHandler;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
 

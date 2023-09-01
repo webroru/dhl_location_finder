@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\dhl_location_finder\API\Dhl\Entity;
+namespace Drupal\location_finder\API\Dhl\Entity;
 
 class OpeningHours
 {

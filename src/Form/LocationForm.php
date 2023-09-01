@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\dhl_location_finder\Form;
+namespace Drupal\location_finder\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\dhl_location_finder\Service\Locations;
+use Drupal\location_finder\Service\Locations;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LocationForm extends FormBase
@@ -22,7 +22,7 @@ class LocationForm extends FormBase
 
     public function getFormId(): string
     {
-        return 'dhl_location_finder_location';
+        return 'location_finder_location';
     }
 
     public function buildForm(array $form, FormStateInterface $form_state): array

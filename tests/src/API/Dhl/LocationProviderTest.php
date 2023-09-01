@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\API\Dhl;
+namespace Drupal\Tests\location_finder\API\Dhl;
 
-use Drupal\dhl_location_finder\API\Dhl\Client;
-use Drupal\dhl_location_finder\API\Dhl\LocationProvider;
-use Drupal\dhl_location_finder\Entity\Location;
+use Drupal\location_finder\API\Dhl\Client;
+use Drupal\location_finder\API\Dhl\LocationProvider;
+use Drupal\location_finder\Entity\Location;
 use Drupal\Tests\UnitTestCase;
 use Symfony\Component\PropertyInfo\Extractor\ConstructorExtractor;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
