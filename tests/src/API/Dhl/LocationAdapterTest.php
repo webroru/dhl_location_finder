@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\API\Entity;
+namespace Drupal\Tests\dhl_location_finder\API\Dhl;
 
-use Drupal\dhl_location_finder\API\Entity\Address;
-use Drupal\dhl_location_finder\API\Entity\Location;
-use Drupal\dhl_location_finder\API\Entity\OpeningHours;
-use Drupal\dhl_location_finder\API\Entity\Place;
+use Drupal\dhl_location_finder\API\Dhl\Entity\Address;
+use Drupal\dhl_location_finder\API\Dhl\Entity\Location;
+use Drupal\dhl_location_finder\API\Dhl\Entity\OpeningHours;
+use Drupal\dhl_location_finder\API\Dhl\Entity\Place;
+use Drupal\dhl_location_finder\API\Dhl\LocationAdapter;
 use Drupal\Tests\UnitTestCase;
 
-class LocationTest extends UnitTestCase
+class LocationAdapterTest extends UnitTestCase
 {
-    public function testCreateLocationEntity(): void
+    public function testLocationAdapter(): void
     {
         $address = (new Address())
             ->setCountryCode('DE')
@@ -36,8 +37,10 @@ class LocationTest extends UnitTestCase
             ->setOpeningHours([$openingHours])
         ;
 
-        $this->assertEquals('Postfiliale 502', $location->getName());
-        $this->assertEquals('DE', $location->getPlace()->getAddress()->getCountryCode());
-        $this->assertEquals('08:00:00', $location->getOpeningHours()[0]->getOpens());
+        $adapter = new LocationAdapter($location);
+
+        $this->assertEquals('Postfiliale 502', $adapter->getName());
+        $this->assertEquals('DE', $adapter->getAddress()->getCountryCode());
+        $this->assertEquals('08:00:00 - 17:00:00', $adapter->getOpeningHours()->getMonday());
     }
 }

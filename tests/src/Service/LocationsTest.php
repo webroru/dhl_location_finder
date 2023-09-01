@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\dhl_location_finder\Service;
 
-use Drupal\dhl_location_finder\API\Client;
-use Drupal\dhl_location_finder\API\LocationProvider;
+use Drupal\dhl_location_finder\API\Dhl\Client;
+use Drupal\dhl_location_finder\API\Dhl\LocationProvider;
 use Drupal\dhl_location_finder\Entity\Location;
 use Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware;
 use Drupal\dhl_location_finder\Middleware\LocationHandler;

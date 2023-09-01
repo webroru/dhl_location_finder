@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\dhl_location_finder\API;
+namespace Drupal\dhl_location_finder\API\Dhl;
 
-use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
+use Drupal\dhl_location_finder\API\Dhl\DTO\LocationsDTO;
 use Drupal\dhl_location_finder\Entity\Location;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\SerializerInterface;

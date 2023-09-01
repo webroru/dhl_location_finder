@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\dhl_location_finder\Middleware;
 
-use Drupal\dhl_location_finder\API\Entity\Address;
-use Drupal\dhl_location_finder\API\Entity\Location;
-use Drupal\dhl_location_finder\API\Entity\OpeningHours;
-use Drupal\dhl_location_finder\API\Entity\Place;
-use Drupal\dhl_location_finder\API\LocationAdapter;
+use Drupal\dhl_location_finder\API\Dhl\Entity\Address;
+use Drupal\dhl_location_finder\API\Dhl\Entity\Location;
+use Drupal\dhl_location_finder\API\Dhl\Entity\OpeningHours;
+use Drupal\dhl_location_finder\API\Dhl\Entity\Place;
+use Drupal\dhl_location_finder\API\Dhl\LocationAdapter;
 use Drupal\dhl_location_finder\Middleware\WeekendFilterMiddleware;
 use Drupal\Tests\UnitTestCase;
 

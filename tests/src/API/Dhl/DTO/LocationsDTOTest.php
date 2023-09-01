@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\dhl_location_finder\API\DTO;
+namespace Drupal\Tests\dhl_location_finder\API\Dhl\DTO;
 
-use Drupal\dhl_location_finder\API\DTO\LocationsDTO;
-use Drupal\dhl_location_finder\API\Entity\Address;
-use Drupal\dhl_location_finder\API\Entity\Location;
-use Drupal\dhl_location_finder\API\Entity\OpeningHours;
-use Drupal\dhl_location_finder\API\Entity\Place;
+use Drupal\dhl_location_finder\API\Dhl\DTO\LocationsDTO;
+use Drupal\dhl_location_finder\API\Dhl\Entity\Address;
+use Drupal\dhl_location_finder\API\Dhl\Entity\Location;
+use Drupal\dhl_location_finder\API\Dhl\Entity\OpeningHours;
+use Drupal\dhl_location_finder\API\Dhl\Entity\Place;
 use Drupal\Tests\UnitTestCase;
 
 class LocationsDTOTest extends UnitTestCase

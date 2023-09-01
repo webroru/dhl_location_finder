@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\dhl_location_finder\API;
+namespace Drupal\dhl_location_finder\API\Dhl;
 
 use GuzzleHttp\ClientInterface;
 
