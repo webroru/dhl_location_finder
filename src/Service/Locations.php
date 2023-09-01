@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\dhl_location_finder\Service;
 
-use Drupal\dhl_location_finder\API\Dhl\LocationProvider;
+use Drupal\dhl_location_finder\API\LocationProviderInterface;
 use Drupal\dhl_location_finder\Entity\Location;
 use Drupal\dhl_location_finder\Middleware\LocationHandler;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 final readonly class Locations
 {
     public function __construct(
-        private LocationProvider $locationProvider,
+        private LocationProviderInterface $locationProvider,
         private LocationHandler $locationHandler,
         private SerializerInterface $serializer,
     ) {

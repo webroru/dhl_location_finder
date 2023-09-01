@@ -4,12 +4,13 @@ services:
 
   Drupal\dhl_location_finder\API\Client: ~
   Drupal\dhl_location_finder\API\LocationProvider: ~
+  Drupal\dhl_location_finder\API\LocationProviderInterface: '@Drupal\dhl_location_finder\API\LocationProvider'
   Drupal\dhl_location_finder\Middleware\AddressFilterMiddleware: ~
   Drupal\dhl_location_finder\Middleware\WeekendFilterMiddleware: ~
   Drupal\dhl_location_finder\Middleware\LocationHandler: ~
   Drupal\dhl_location_finder\Service\Locations:
     arguments:
-      - '@Drupal\dhl_location_finder\API\LocationProvider'
+      - '@Drupal\dhl_location_finder\API\LocationProviderInterface'
       - '@Drupal\dhl_location_finder\Middleware\LocationHandler'
       - '@Symfony\Component\Serializer\Serializer'
   Symfony\Component\PropertyInfo\Extractor\ConstructorExtractor:
