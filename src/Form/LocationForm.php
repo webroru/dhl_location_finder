@@ -32,6 +32,7 @@ class LocationForm extends FormBase
             '#title' => $this->t('countryCode'),
             '#size' => 60,
             '#maxlength' => 128,
+            '#required' => true,
         ];
 
         $form['addressLocality'] = [
@@ -39,6 +40,7 @@ class LocationForm extends FormBase
             '#title' => $this->t('addressLocality'),
             '#size' => 60,
             '#maxlength' => 128,
+            '#required' => true,
         ];
 
         $form['postalCode'] = [
