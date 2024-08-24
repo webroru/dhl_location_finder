@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\location_finder\API\Dhl;
 
+use Drupal\location_finder\Exceptions\ApiException;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Client
 {
@@ -28,8 +31,21 @@ class Client
             ],
         ];
 
-        $response = $this->client->get(self::HOST . '/' . self::API . '/find-by-address', $options);
+        try {
+            return $this->client->get(self::HOST . '/' . self::API . '/find-by-address', $options)
+                ->getBody()
+                ->getContents();
 
-        return $response->getBody()->getContents();
+        } catch (ClientException $e) {
+            $body = $e->getResponse()->getBody()->getContents();
+            $data = json_decode($body, true);
+            $message = sprintf('Client error: `%s`', $data['detail'] ?? $data['title'] ?? 'unknown');
+
+            throw new ApiException($message);
+        } catch (GuzzleException $e) {
+            $message = sprintf('Client error: `%s`', $e->getMessage());
+
+            throw new ApiException($message);
+        }
     }
 }
