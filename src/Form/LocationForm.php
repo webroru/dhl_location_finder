@@ -63,13 +63,24 @@ class LocationForm extends FormBase
 
     public function submitForm(array &$form, FormStateInterface $form_state): void
     {
-        $locations = $this->locationsService->findByAddress(
-            $form_state->getValue('countryCode'),
-            $form_state->getValue('addressLocality'),
-            $form_state->getValue('postalCode')
-        );
-        $handledLocations = $this->locationsService->processLocations($locations);
-        $yaml = $this->locationsService->convertToYaml($handledLocations);
-        $this->messenger()->addMessage($yaml);
+        try {
+            $locations = $this->locationsService->findByAddress(
+                $form_state->getValue('countryCode'),
+                $form_state->getValue('addressLocality'),
+                $form_state->getValue('postalCode')
+            );
+            $handledLocations = $this->locationsService->processLocations($locations);
+            $yaml = $this->locationsService->convertToYaml($handledLocations);
+            $this->messenger()->addMessage($yaml);
+        } catch (\Exception $e) {
+            $this->getLogger('location_finder')
+                ->error(
+                    'Get Locations request failed with error %error',
+                    [
+                        '%error' => $e->getMessage(),
+                    ]
+                );
+            $this->messenger()->addError('Get Locations request failed');
+        }
     }
 }
